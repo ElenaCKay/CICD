@@ -9,13 +9,24 @@ CI/CD stands for continuous integration and continuous deployment. It is the aut
 - Deploying
 - Infrastructure provisioning 
 
+
 The CI/CD pipeline takes code that has changes and automatically tests and pushes it for delivery and deployment. This minimises downtime and helps code to be released faster. As applications become larger CI/CD can decrease development complexity.
 
+[DevOps Culture and CICD](https://medium.com/@ahshahkhan/devops-culture-and-cicd-3761cfc62450)
+
 **Continuous integration** is the practice of integrating all your code changes into the main branch of a shared source code repository early and often, automatically testing each change when you commit or merge them, and automatically kicking off a build. With continuous integration, errors and security issues can be identified and fixed more easily, and much earlier in the development process.
+
+![continuous integration](imgs/continous_integration.webp)
 
 **Continuous delivery** is a software development practice that works in conjunction with CI to automate the infrastructure provisioning and application release process.
 
 Once code has been tested and built as part of the CI process, CD takes over during the final stages to ensure it's packaged with everything it needs to deploy to any environment at any time. CD can cover everything from provisioning the infrastructure to deploying the application to the testing or production environment.
+
+![continous delivery](imgs/continous_delivery.webp)
+
+**Continuous depolyment** is the step after continuous delivery. This proccess takes evry change that passes the production pipline and releases to customers. There is no human interaction and only a failed test will prevent the change going to production.
+
+![continuous deployment](imgs/continous_deployment.webp)
 
 ## Why Jenkins?
 
@@ -47,9 +58,11 @@ Benefits:
 - Bamboo
 - Azure DevOps Server
 
+![cicd tools](imgs/cicd_tools_examples.webp)
+
 ## Why build a pipeline?
 
-With a CI/CD pipeline, development teams can make changes to code that are then automatically tested and pushed out for delivery and deployment. By automating the process, the objective is to minimize human error and maintain a consistent process for how software is released.
+With a CI/CD pipeline, development teams can make changes to code that are then automatically tested and pushed out for delivery and deployment. By automating the process, the objective is to minimize human error and maintain a consistent process for how software is released. If at any point a stage fails the next stages will also fail.
 
 One of the most exclusive benefits of a CI/CD pipeline is that it leads to the quick and easy rollback of code changes if there are any issues in the production environment after a release. If any new code change breaks a feature or general application, you can revert to its previous stable version right away.
 
