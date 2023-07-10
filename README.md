@@ -73,3 +73,53 @@ CI/CD pipeline reduces human intervention across the DevOps lifecycle by automat
 CI/CD has enabled many organizations to release on a more frequent basis without compromising on quality. With CI/CD, code changes are shepherded through an automated pipeline that handles the repetitive build, test and deployment tasks and alerts you about any issues.
 
 ![benefits of cicd](imgs/benefits-cicd.png)
+
+
+## Adding a key to github
+
+To add a key go to the app repo, settings, deploy key, add key, paste the key into it and give it a name.
+
+## Jenkins
+
+### Creating a simple job on Jenkins
+
+1. Go to the Jenkins site and log in
+2. Click on New Item
+
+![home page](imgs/jenkins_home_page.png)
+
+3. Give the job a name and select Freestyle project
+
+![create job](imgs/create-job.png)
+
+4. You can give the job a description and tick discard old builds and set max # of builds to keep to 3. This will get rid of the build after 3 days.
+
+![setting up job](imgs/setting-up-job.png)
+
+5. Scroll down to the Build section and choose Excecute shell
+
+![Build](imgs/build-jenkins.png)
+
+6. In the shell type in your commands you woud like to execute, in this case we did uname -a which will give the type of operating system.
+7. If there is another job you wish to do after this one click on post-build action and select build other projects
+
+![shell and build other projects](imgs/shell_and_build_other.png)
+
+8. Click on Build Now and then go to the build history and you should be able to see the job there. 
+9. Click on console output to see the result 
+
+![Build now](imgs/build-now.png)
+
+10. In the console output you can see what the result is and if it was successful
+    
+![console output](imgs/console_output.png)
+
+11. The blue circle on the main dashboard shows it is successful. It will be cloudy if there was some issues and it will be red it it failed.
+
+![success](imgs/success.png)
+
+### Deleting job
+
+To delete a job click on the drop down from the name of the job and select delete.
+
+![delete](imgs/delete.png)
