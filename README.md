@@ -68,4 +68,8 @@ One of the most exclusive benefits of a CI/CD pipeline is that it leads to the q
 
 ## Business value?
 
-It saves money and time.
+CI/CD pipeline reduces human intervention across the DevOps lifecycle by automating the handoffs, version controlling, source code management, deployment processes, and testing, among others. This significantly saves the time and money required to develop and deliver high-quality software.
+
+CI/CD has enabled many organizations to release on a more frequent basis without compromising on quality. With CI/CD, code changes are shepherded through an automated pipeline that handles the repetitive build, test and deployment tasks and alerts you about any issues.
+
+![benefits of cicd](imgs/benefits-cicd.png)
