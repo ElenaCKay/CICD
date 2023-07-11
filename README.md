@@ -48,6 +48,28 @@ Benefits:
     
 ![Jenkins img](imgs/jenkins-img.png)
 
+Jenkins is an open-source automation server widely used for continuous integration and continuous delivery (CI/CD) pipelines. It allows software development teams to automate the building, testing, and deployment of their applications. Jenkins provides a web-based interface and a powerful set of plugins that enable users to create and manage automated workflows.
+
+In a Jenkins environment, there are two key components: the master node and agent nodes (also known as slave nodes or build nodes).
+
+1. Jenkins Master Node:
+The master node is the central server that manages the Jenkins system. It coordinates the overall build process, schedules and distributes builds to agent nodes, and monitors their execution. The master node hosts the web interface, where users configure Jenkins jobs, view build results, and manage the system's configuration. It also stores the configurations, plugins, and other essential data related to Jenkins.
+
+The master node's responsibilities include:
+- Scheduling and coordinating build jobs.
+- Managing the distribution of build tasks to agent nodes.
+- Storing and managing configurations, plugins, and user management.
+- Providing the web-based interface for managing Jenkins.
+
+2. Jenkins Agent Node:
+Agent nodes are the worker machines responsible for executing build tasks assigned to them by the master node. They provide the computing resources required for building, testing, and deploying software. Agent nodes can be physical machines or virtual machines, and they can be located on the same network as the master node or in remote locations.
+
+The agent nodes are configured to connect to the Jenkins master and wait for build tasks to be assigned to them. When a build is scheduled, the master node determines the appropriate agent based on criteria such as availability, labels, or specific requirements defined in the build configuration. The build task is then sent to the agent node for execution.
+
+Agent nodes can have different configurations, such as specific software or operating systems, to accommodate different build requirements. They can be dedicated to specific types of builds or shared among multiple projects, depending on the organization's needs.
+
+To summarize, the Jenkins master node is the central server that manages and coordinates the build process, while the agent nodes are the worker machines that execute the build tasks assigned by the master. This distributed architecture allows for scalability, parallelization, and flexibility in managing builds across various environments and configurations.
+
 ## Other tools that can be used for CICD:
 
 - Travis Ci
