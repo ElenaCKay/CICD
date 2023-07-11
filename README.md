@@ -53,6 +53,8 @@ Jenkins is an open-source automation server widely used for continuous integrati
 In a Jenkins environment, there are two key components: the master node and agent nodes (also known as slave nodes or build nodes).
 
 1. Jenkins Master Node:
+
+It is where you have logged in and is the controller.
 The master node is the central server that manages the Jenkins system. It coordinates the overall build process, schedules and distributes builds to agent nodes, and monitors their execution. The master node hosts the web interface, where users configure Jenkins jobs, view build results, and manage the system's configuration. It also stores the configurations, plugins, and other essential data related to Jenkins.
 
 The master node's responsibilities include:
@@ -61,10 +63,10 @@ The master node's responsibilities include:
 - Storing and managing configurations, plugins, and user management.
 - Providing the web-based interface for managing Jenkins.
 
-2. Jenkins Agent Node:
+1. Jenkins Agent Node:
 Agent nodes are the worker machines responsible for executing build tasks assigned to them by the master node. They provide the computing resources required for building, testing, and deploying software. Agent nodes can be physical machines or virtual machines, and they can be located on the same network as the master node or in remote locations.
 
-The agent nodes are configured to connect to the Jenkins master and wait for build tasks to be assigned to them. When a build is scheduled, the master node determines the appropriate agent based on criteria such as availability, labels, or specific requirements defined in the build configuration. The build task is then sent to the agent node for execution.
+The agent nodes are configured to connect to the Jenkins master and wait for build tasks to be assigned to them. When a build is scheduled, the master node determines the appropriate agent based on criteria such as availability, labels, or specific requirements defined in the build configuration. The build task is then sent to the agent node for execution. If the job fails it will only effect that agent, not the whole system.
 
 Agent nodes can have different configurations, such as specific software or operating systems, to accommodate different build requirements. They can be dedicated to specific types of builds or shared among multiple projects, depending on the organization's needs.
 
@@ -145,3 +147,59 @@ To add a key go to the app repo, settings, deploy key, add key, paste the key in
 To delete a job click on the drop down from the name of the job and select delete.
 
 ![delete](imgs/delete.png)
+
+
+## Next steps in Jenkins
+
+1. Add public key to github. To add a key go to the app repo, settings, deploy key, add key, paste the key into it and give it a name.
+2. Click on New Item
+3. Give the job a name and select Freestyle project
+4. Add description and select discard old builds. Give max # of builds to keep 3.
+5. Select Github Project 
+6. Paste in the HTTPS url from Github
+
+![Alt text](imgs/stage2-img/step1.png)
+
+7. In Source Code Management in repository URL paste in the SSH url
+8. Add the private key which matches the public key on github
+9. Change Branch specifer to main
+
+![Alt text](imgs/stage2-img/step2.png)
+
+10. Build Environment - select Provide Node & npm bin/ folder to PATH
+11. NodeJS installation - Sparta-Node-JS (this allows node commands)
+
+![Alt text](imgs/stage2-img/step3.png)
+
+12. Office 365 Connector - select Restrict where this project can be run
+13. Label Expression - sparta-ubuntu-node
+
+![Alt text](imgs/stage2-img/step4.png)
+
+14. Scroll down to the Build section and choose Excecute shell
+15. In the shell type in your commands you woud like to execute, in this case we did cd app, npm install and npm test.
+
+![Alt text](imgs/stage2-img/step5.png)
+
+16. Set up a webhook in Github - go to the repo, settings, webhooks, add webhook
+17. In payload URL paste the Jenkins url (ip) with /github-webhook/ on the end
+18. Content type - application/json
+19. Let me select individual events
+
+![Alt text](imgs/stage2-img/step7.png)
+
+20. Select Pull Requests and Pushes
+
+![Alt text](imgs/stage2-img/step8.png)
+
+21. Select Active and Update webhook
+
+![Alt text](imgs/stage2-img/step9.png)
+
+22. Back on Jenkins go to Build Triggers and select Github hook trigger for GITScm polling
+
+![Alt text](imgs/stage2-img/step10.png)
+
+Now when you push a change on the app git repo, jenkins will automatically create a job and run and then you can look at the console output. For us the script cd in to the app, did an npm install and then ran some tests. Here is the successful output:
+
+![Alt text](imgs/stage2-img/step6.png)
