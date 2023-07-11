@@ -149,7 +149,7 @@ To delete a job click on the drop down from the name of the job and select delet
 ![delete](imgs/delete.png)
 
 
-## Next steps in Jenkins
+## Adding webhooks and automation in Jenkins
 
 1. Add public key to github. To add a key go to the app repo, settings, deploy key, add key, paste the key into it and give it a name.
 2. Click on New Item
