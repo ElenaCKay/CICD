@@ -181,10 +181,10 @@ To delete a job click on the drop down from the name of the job and select delet
 
 ![Alt text](imgs/stage2-img/step5.png)
 
-16. Set up a webhook in Github - go to the repo, settings, webhooks, add webhook
-17. In payload URL paste the Jenkins url (ip) with /github-webhook/ on the end
-18. Content type - application/json
-19. Let me select individual events
+1.  Set up a webhook in Github - go to the repo, settings, webhooks, add webhook [Example](https://www.blazemeter.com/blog/how-to-integrate-your-github-repository-to-your-jenkins-project)
+2.  In payload URL paste the Jenkins url (ip) with /github-webhook/ on the end
+3.  Content type - application/json
+4.  Let me select individual events
 
 ![Alt text](imgs/stage2-img/step7.png)
 
