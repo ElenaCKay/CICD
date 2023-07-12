@@ -107,7 +107,7 @@ To add a key go to the app repo, settings, deploy key, add key, paste the key in
 
 ### Creating a simple job on Jenkins
 
-1. Go to the Jenkins site and log in
+1. Go to the [Jenkins site](http://18.133.222.223:8080/) and log in
 2. Click on New Item
 
 ![home page](imgs/jenkins_home_page.png)
@@ -151,7 +151,7 @@ To delete a job click on the drop down from the name of the job and select delet
 
 ## Adding webhooks and automation in Jenkins
 
-1. Add public key to github. To add a key go to the app repo, settings, deploy key, add key, paste the key into it and give it a name.
+1. Add public key to github. To add a key go to the app repo, settings, deploy key, add key, paste the key into it and give it a name. **Blocker** Make sure to add write access!
 2. Click on New Item
 3. Give the job a name and select Freestyle project
 4. Add description and select discard old builds. Give max # of builds to keep 3.
@@ -203,3 +203,83 @@ To delete a job click on the drop down from the name of the job and select delet
 Now when you push a change on the app git repo, jenkins will automatically create a job and run and then you can look at the console output. For us the script cd in to the app, did an npm install and then ran some tests. Here is the successful output:
 
 ![Alt text](imgs/stage2-img/step6.png)
+
+## AWS production
+
+On AWS we have to allow the jenkins IP address and the port it is on (port 8080). 
+
+The workspace of Jenkins contains a clone of the repo.
+to create branch `git checkout dev`
+
+Job 1:
+
+## Job 2: called elena-ci-merge
+- Create a dev branch on localhost 
+- Github makes a change to dev branch and pushes the code to github
+- The webhook triggers
+- If the test passed the code should be merged from dev to main branch
+
+![Alt text](imgs/job2/source-code-management-git.png)
+
+![Alt text](imgs/job2/post-build-git.png)
+
+## Job 3:
+- Clones the main branch and push to production AWS ec2
+- ssh into ec2
+- copy the code using scp or rsync 
+- navigate to app folder
+- npm install 
+- npm start
+- get the public ip with 3000 share with team 
+
+Launch an ec2 instance with required SG rules
+ubuntu 18.04
+ensure to have node env
+have app folder copied from jenkins to ec2
+provide file.pem to jenkins
+
+Steps:
+
+1. Give discription, discard old builds and max # builds 3
+2. Github project - HTTPS link
+
+![Alt text](imgs/job3/step1.png)
+
+3. Office 365 connector - Restrict where this project can be run
+4. Label expression - sparta-ubuntu-node
+
+![Alt text](imgs/job3/step2.png)
+
+5. Source code management - Git
+6. Repo url - SSH
+7. Credentials - elena-jenkins-key (key on repo)
+8. Branch - main
+
+![Alt text](imgs/job3/step3.png)
+
+9. Build environment - SSH agent
+10. credentials - tech241.pem
+
+![Alt text](imgs/job3/step4.png)
+
+11. Build execute shell put in the code below:
+
+```
+rsync -avz -e "ssh -o StrictHostKeyChecking=no" app ubuntu@ec2-52-215-189-222.eu-west-1.compute.amazonaws.com:/home/ubuntu/app
+ 
+
+# SSH
+ssh -o StrictHostKeyChecking=no ubuntu@ec2-52-215-189-222.eu-west-1.compute.amazonaws.com <<EOF
+    # For app running without the db
+    unset DB_HOST
+
+ 
+
+    cd app/app
+    npm install
+    pm2 kill
+    pm2 start app.js
+EOF
+```
+
+![Alt text](imgs/job3/step5.png)
