@@ -12,6 +12,7 @@ To start I followed this [link](https://www.jenkins.io/doc/tutorials/tutorial-fo
 
 My Jenkins: http://3.252.45.241:8080/
 
-6. Install the plugin NodeJS
-7. Go to JENKINS_URL/configureTools [NodeJS documentation](https://plugins.jenkins.io/nodejs/)
-8. Add a nodejs environment - give it a name and set the version to 12.0.0. This will be used in the CI job
+6. Go to security -> Git Host Verification strategy and pick No verification i think this allows all connections to github?
+7. Install the plugin NodeJS
+8. Go to JENKINS_URL/configureTools [NodeJS documentation](https://plugins.jenkins.io/nodejs/)
+9. Add a nodejs environment - give it a name and set the version to 12.0.0. This will be used in the CI job
