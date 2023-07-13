@@ -24,7 +24,7 @@ Once code has been tested and built as part of the CI process, CD takes over dur
 
 ![continous delivery](imgs/continous_delivery.webp)
 
-**Continuous depolyment** is the step after continuous delivery. This proccess takes evry change that passes the production pipline and releases to customers. There is no human interaction and only a failed test will prevent the change going to production.
+**Continuous depolyment** is the step after continuous delivery. This proccess takes evry change that passes the production pipline and releases to customers. There is no human interaction and only a failed test will prevent the change going to production. End to end automation, no interaction at all to get it to production.
 
 ![continuous deployment](imgs/continous_deployment.webp)
 
